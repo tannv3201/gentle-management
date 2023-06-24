@@ -1,0 +1,18 @@
+.active {
+    background-color: #1976d2 !important;
+    color: var(--white);
+}
+
+.logo {
+    height: 60px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    img {
+        height: 100%;
+    }
+}
+.wrapper-children {
+    padding: 20px 32px;
+    background-color: var(--light-gray);
+}
