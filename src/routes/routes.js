@@ -26,6 +26,7 @@ import VerifyCode from "../pages/ForgotPassword/VerifyCode";
 import PasswordChange from "../pages/ForgotPassword/PasswordChange";
 import VerifyEmail from "../pages/SignUp/VerifyEmail";
 import Branch from "../pages/Admin/Branch/Branch";
+import ImportExcel from "../pages/Admin/ImportExcel";
 
 // public routes
 
@@ -33,6 +34,11 @@ export const publicRoutes = [
     {
         path: "/dang-nhap",
         component: Login,
+        layout: null,
+    },
+    {
+        path: "/importExcel",
+        component: ImportExcel,
         layout: null,
     },
     {

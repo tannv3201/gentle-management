@@ -23,6 +23,8 @@ import classNames from "classnames/bind";
 import { InfoRounded } from "@mui/icons-material";
 import FilterProduct from "./FilterProduct/FilterProduct";
 import { FormatCurrency } from "../../../utils/FormatCurrency/formatCurrency";
+import { importExcelProduct } from "../../../redux/api/importExcel";
+import ImportExcelProduct from "./ImportExcelProduct";
 
 const cx = classNames.bind(styles);
 
@@ -96,16 +98,41 @@ export default function ProductList() {
         navigate(`/product/${productId}`);
     };
 
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [message, setMessage] = useState("");
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const [isOpenImportExcelModal, setIsOpenImportExcelModal] = useState(false);
+
+    const handleOpenImportExcelModal = () => {
+        setIsOpenImportExcelModal(true);
+    };
+
+    const handleCloseImportExcelModal = () => {
+        setIsOpenImportExcelModal(false);
+    };
     return (
         <>
             <div>
                 {user?.role_id <= 2 && (
-                    <GButton
-                        style={{ marginRight: 12 }}
-                        onClick={handleOpenCreateUpdateModal}
-                    >
-                        Thêm sản phẩm
-                    </GButton>
+                    <>
+                        <GButton
+                            style={{ marginRight: 12 }}
+                            onClick={handleOpenCreateUpdateModal}
+                        >
+                            Thêm sản phẩm
+                        </GButton>
+
+                        {/* <GButton
+                            style={{ marginRight: 12 }}
+                            onClick={handleOpenImportExcelModal}
+                        >
+                            Nhập Excel
+                        </GButton> */}
+                    </>
                 )}
                 <FilterProduct
                     isFiltering={isFiltering}
@@ -247,6 +274,13 @@ export default function ProductList() {
                 handleClose={handleCloseDeleteConfirmPopup}
                 selectedProduct={selectedProduct}
             />
+
+            {/* <ImportExcelProduct
+                isOpen={isOpenImportExcelModal}
+                handleClose={handleCloseImportExcelModal}
+                handleOpen={handleOpenImportExcelModal}
+                title={"Import danh sách sản phẩm"}
+            /> */}
         </>
     );
 }
